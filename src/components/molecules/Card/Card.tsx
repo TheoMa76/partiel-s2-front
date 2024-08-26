@@ -1,6 +1,6 @@
-import AwesomeTitle from '@/components/atoms/Texts/Title/AwesomeTitle';
-import MinecraftHN from '@/components/atoms/Texts/Title/MinecraftHN';
 import React from 'react';
+import MinecraftHN from '../../atoms/Texts/Title/MinecraftHN';
+import AwesomeTitle from '../../atoms/Texts/Title/AwesomeTitle';
 
 type Props = {
   title?: string;

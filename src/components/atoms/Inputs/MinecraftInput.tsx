@@ -1,4 +1,4 @@
-'use client';
+;
 import React, { ChangeEvent, ChangeEventHandler, FormEventHandler } from 'react';
 
 type MinecraftInputVariant = 'primary' | 'secondary' | 'neutral';

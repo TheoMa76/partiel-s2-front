@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import MinecraftInput from '@/components/atoms/Inputs/MinecraftInput';
-import MinecraftButton from '@/components/atoms/Buttons/MinecraftButton';
-import { toast } from 'react-toastify';
+import MinecraftInput from '../../atoms/Inputs/MinecraftInput';
+import MinecraftButton from '../../atoms/Buttons/MinecraftButton';
+
 
 interface FormValues {
   [key: string]: any;

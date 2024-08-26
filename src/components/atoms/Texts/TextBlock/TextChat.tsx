@@ -1,4 +1,4 @@
-'use client';
+;
 import React, { useRef } from 'react';
 import '../minecraftText.css';
 import { toast } from 'react-toastify';
