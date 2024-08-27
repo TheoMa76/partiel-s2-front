@@ -1,41 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import MovieDetails from './components/molecules/MovieDetails/MovieDetails';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
-const Home = () => {
-  return <h2>Accueil</h2>;
-};
 
-const About = () => {
-  return <h2>À propos</h2>;
-};
-
-const Contact = () => {
-  return <h2>Contact</h2>;
-};
-
-const App = () => {
+const App: React.FC = () => {
   return (
+    <>
+    <ToastContainer />
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Accueil</Link>
-          </li>
-          <li>
-            <Link to="/about">À propos</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
-
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/movie/:movieId" element={<MovieDetails />} />
       </Routes>
     </Router>
+    </>
   );
 };
 
