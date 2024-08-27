@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import MinecraftHN from '../components/atoms/Texts/Title/MinecraftHN';
-import Search from '../components/atoms/Search/Search';
+import MinecraftHN from '../components/atoms/Texts/Title/HN';
+import Search from '../components/molecules/FIlters/Search/Search';
 import Pagination from '../components/molecules/Pagination/Pagination';
 import GenreFilter from '../components/molecules/FIlters/GenreFilter';
 import MovieGrid from '../components/molecules/Containers/Grid/MovieGrid';
@@ -127,7 +127,7 @@ export const Home: React.FC = () => {
 
   return (
     <div className='m-5'>
-      <MinecraftHN as="h2" className="mb-8 text-center">Films les plus populaires</MinecraftHN>
+      <MinecraftHN as="h2" className="mb-8 text-center text-white">Films les plus populaires</MinecraftHN>
       <Search onSearch={handleSearch} />
       <button
         onClick={handleClearFilters}

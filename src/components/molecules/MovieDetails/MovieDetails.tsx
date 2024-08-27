@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Card from '../Containers/Card/Card';
 import Reviews from '../Reviews/Reviews';
+import MovieCard from '../Containers/Card/MovieCard';
 
 interface MovieDetailsProps {}
 
@@ -45,6 +45,14 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
     fetchMovieDetails();
   }, [movieId]);
 
+  const getGenreNames = (genreIds: number[]) => {
+    if (!movie || !movie.genres) return '';
+    return movie.genres
+      .filter((genre: any) => genreIds.includes(genre.id))
+      .map((genre: any) => genre.name)
+      .join(', ');
+  };
+
   if (loading) return <p className="text-center">Chargement...</p>;
   if (error) return <p className="text-center text-red-500">Erreur : {error}</p>;
 
@@ -56,60 +64,16 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
       >
         Retour à l'accueil
       </button>
+      <div className='my-7'>
       {movie && (
-        <div className="flex flex-col items-center">
-          <Card className="max-w-4xl bg-gray-800 p-6 mb-8 shadow-lg rounded-lg hover:scale-105 transition-transform duration-300">
-            <h2 className="text-3xl font-bold mb-4 text-center">{movie.title}</h2>
-            <div className="flex flex-col items-start md:items-center">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={`${movie.title} Affiche`}
-                className="w-auto h-auto rounded-md mb-4 md:mb-0 md:mr-6 object-cover"
-              />
-              <div className="flex-1">
-                <p className="mb-2 text-lg"><strong>Date de sortie :</strong> {movie.release_date}</p>
-                <p className="mb-2 text-lg"><strong>Slogan :</strong> {movie.tagline}</p>
-                <p className="mb-2 text-lg"><strong>Note moyenne :</strong> {movie.vote_average}</p>
-                <p className="mb-2 text-lg"><strong>Durée :</strong> {movie.runtime} minutes</p>
-                <p className="mb-2 text-lg"><strong>Statut :</strong> {movie.status}</p>
-                <p className="mb-2 text-lg"><strong>Budget :</strong> ${movie.budget.toLocaleString()}</p>
-                <p className="mb-2 text-lg"><strong>Recettes :</strong> ${movie.revenue.toLocaleString()}</p>
-                <p className="mb-4 text-lg"><strong>Description :</strong> {movie.overview}</p>
-                <p className="mb-2 text-lg"><strong>Genres :</strong> {movie.genres.map((genre: any) => genre.name).join(', ')}</p>
-                {movie.belongs_to_collection && (
-                  <div className="mt-8 text-center">
-                    <p className="mb-2 text-lg"><strong>Partie de la collection :</strong> {movie.belongs_to_collection.name}</p>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${movie.belongs_to_collection.poster_path}`}
-                      alt={`${movie.belongs_to_collection.name} Affiche`}
-                      className="w-80 h-auto mx-auto rounded-md object-cover"
-                    />
-                  </div>
-                )}
-                <p className="mb-2 text-lg"><strong>Compagnies de production :</strong></p>
-                <ul className="list-disc pl-5">
-                  {movie.production_companies.map((company: any) => (
-                    <li key={company.id} className="flex items-center mb-2">
-                      {company.logo_path && (
-                        <img
-                          src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                          alt={`${company.name} Logo`}
-                          className="inline-block w-12 h-auto mr-2"
-                        />
-                      )}
-                      <span>{company.name} ({company.origin_country})</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mb-2 text-lg"><strong>Langue originale :</strong> {movie.original_language}</p>
-                <p className="mb-2 text-lg"><strong>Page d'accueil :</strong> <a href={movie.homepage} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">{movie.homepage}</a></p>
-                <p className="mb-2 text-lg"><strong>ID IMDB :</strong> <a href={`https://www.imdb.com/title/${movie.imdb_id}`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">{movie.imdb_id}</a></p>
-              </div>
-            </div>
-          </Card>
-          <Reviews movieId={movieId} />
-        </div>
+        <MovieCard
+          movie={movie}
+          getGenreNames={getGenreNames}
+          disableLink={true}
+        />
       )}
+      </div>
+      <Reviews movieId={movieId} />
     </div>
   );
 };

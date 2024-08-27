@@ -1,5 +1,5 @@
 import React from 'react';
-import MinecraftHN from '../../../atoms/Texts/Title/MinecraftHN';
+import MinecraftHN from '../../../atoms/Texts/Title/HN';
 
 type Props = {
   title?: string;
