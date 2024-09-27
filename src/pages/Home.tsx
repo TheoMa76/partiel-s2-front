@@ -127,7 +127,7 @@ export const Home: React.FC = () => {
 
   return (
     <div className='m-5'>
-      <MinecraftHN as="h2" className="mb-8 text-center text-white">Films les plus populaires</MinecraftHN>
+      <MinecraftHN as="h2" className="mb-8 text-center text-white">Films les plus INCROYABLES !</MinecraftHN>
       <Search onSearch={handleSearch} />
       <button
         onClick={handleClearFilters}
